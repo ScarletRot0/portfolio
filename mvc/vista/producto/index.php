@@ -2,6 +2,32 @@
 $pg = "productos";
 require_once("vista/layout/header.php");
 //var_dump($dato);
+$nombre="GUARDAR";
+$metodo="guardar";
+$enviar=false;
+$aProdu = array();
+if(isset($_GET['m'])):
+    $metodo =   $_GET['m'];
+    if($metodo=="editar"){
+        $nombre="EDITAR";
+        $metodo="update";
+        if(!empty($_REQUEST['id'])&&$enviar!=true){
+            $id=$_REQUEST['id'];
+            foreach($dato as $producto):
+                foreach($producto as $po=>$v):
+                    if($v["id"]==$id){
+                        $aProdu=$v;
+                    }
+                endforeach;
+            endforeach;
+        }
+        $enviar=true;
+    }
+    else if($metodo=="nuevo"){
+        $enviar=true;
+        $metodo="guardar";
+    }
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,27 +49,31 @@ require_once("vista/layout/header.php");
         </div>
         <div class="row">
             <div class="col-6">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="" method="GET" enctype="multipart/form-data">
                     <div>
                         <label for="">Nombre: *</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control mb-2" required value="<?php echo (isset($pos) && $pos >= 0)? $aClientes[$pos]["dni"]: ""; ?>">
+                        <input type="text" name="nombre" id="nombre" class="form-control mb-2" required value="<?php echo (!empty($aProdu))? $aProdu["nombre"]: ""; ?>">
                     </div>
                     <div>
                         <label for="">Precio: *</label>
-                        <input type="number" name="precio" id="precio" class="form-control mb-2" required value="<?php echo (isset($pos) && $pos >= 0)? $aClientes[$pos]["nombre"]: ""; ?>">
+                        <input type="number" name="precio" id="precio" class="form-control mb-2" required value="<?php echo (!empty($aProdu))? $aProdu["precio"]: ""; ?>">
                     </div>
                     <div>
                         <label for="">Archivo adjunto</label>
-                        <input class="mt-3" type="file" name="foto" id="foto" accept=".jpg, .jpeg, .png">
+                        <input class="mt-3" type="file" name="Foto" id="Foto" accept=".jpg, .jpeg, .png">
                         <small class="d-block">Archivos admitidos: .jpg, .jpeg, .png</small>
                     </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="index.php" class="btn btn-danger my-2">NUEVO</a>
-                    </div>
+                    <?php if($enviar==true):?>
+                        <div>
+                            <button type="submit" class="btn btn-primary" name="btnGuardar" value=<?php echo$nombre;?>>Guardar</button>
+                            <input type="hidden" name="m" value=<?php echo$metodo;?>>
+                            <input type="hidden" name="id" value="<?php echo $v['id'] ?>">
+                        </div>
+                    <?php endif;?>
                 </form>
             </div>
             <div class="col-6">
+                <a type="submit" value="habilitar" name="btnCrear" id="btnCrear" class="btn btn-danger my-2" href="/php/mvc/index.php?m=nuevo">NUEVO</a>
                 <table class="table table-hover border">
                     <thead>
                     <tr>
@@ -56,16 +86,16 @@ require_once("vista/layout/header.php");
                     </thead>
                     <tbody>
                     <?php if (!empty($dato)): ?>
-                        <?php foreach($dato as $pos => $producto): ?>
-                            <?php foreach($producto as $v): ?>
+                        <?php foreach($dato as $producto): ?>
+                            <?php foreach($producto as $po=>$v): ?>
                             <tr>
                                 <td><?php echo $v["id"]; ?></td>
                                 <td><?php echo $v["Foto"]; ?></td>
                                 <td><?php echo $v["nombre"]; ?></td>
                                 <td><?php echo $v["precio"]; ?></td>
                                 <td>
-                                    <a href="?pos=<?php echo $v["id"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="?eliminar=<?php echo $v["id"];?>"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a value="habilitar" name="btnEditar" href="/php/mvc/index.php?m=editar&id=<?php echo $v["id"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="/php/mvc/index.php?m=eliminar&id=<?php echo $v["id"];?>"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

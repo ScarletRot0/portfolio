@@ -65,7 +65,7 @@
   <a href="#default" class="logo">SistemaMVC</a>
   <div class="header-right">
     <a class="<?php echo ($pg == "inicio")? "active": ""; ?>" href="">Inicio</a>
-    <a class="<?php echo ($pg == "productos")? "active": ""; ?>"href="">Productos</a>
+    <a class="<?php echo ($pg == "productos")? "active": ""; ?>"href="index.php">Productos</a>
     <a class="<?php echo ($pg == "servicios")? "active": ""; ?>"href="">Servicios</a>
   </div>
 </div>

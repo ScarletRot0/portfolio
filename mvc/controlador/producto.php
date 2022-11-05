@@ -13,11 +13,11 @@ class modeloController{
     }
 
     // INSERTAR
-    function nuevo(){
-    	require_once("vista/nuevo.php");	    	    	
+    static function nuevo(){
+    	require_once("vista/producto/index.php");	    	    	
     }
-    function guardar(){
-    	$nombre 	=	$_REQUEST['nombre'];
+    static function guardar(){
+    	$nombre 	=	trim($_REQUEST['nombre']);
     	$precio 	=	$_REQUEST['precio'];
 		$foto 		=	$_REQUEST['Foto'];
         $data       =   "'".$nombre."','".$precio."','".$foto."'";
@@ -29,26 +29,28 @@ class modeloController{
 
     // ACTUALIZAR
 
-    function editar(){
+    static function editar(){
     	$id=$_REQUEST['id'];
     	$producto 	=	new Modelo();
-    	$dato=$producto->mostrar("productos","id=".$id);    	
-    	require_once("vista/editar.php");
+    	//$dato=$producto->mostrar("productos","id=".$id);  	
+    	require_once("vista/producto/index.php");
     }
-    function update(){
+    static function update(){
+		$aNombres=['nombre','precio','Foto'];
     	$id 		= 	$_REQUEST['id'];
-    	$nombre 	=	$_REQUEST['nombre'];
+    	$nombre 	=	trim($_REQUEST['nombre']);
     	$precio 	=	$_REQUEST['precio'];
-        $data       =   "nombre='".$nombre."', precio=".$precio;
+		$foto		=	$_REQUEST['Foto'];
+        $data       =   "'".$nombre."','".$precio."','".$foto."'";
         $condicion  =   "id=".$id;
     	$producto 	=	new Modelo();
-		$dato 		=	$producto->actualizar("productos",$data,$condicion);
+		$dato 		=	$producto->actualizar("productos",$aNombres,$data,$condicion);
         header("location:".urlsite);
 	}
 
     // ELIMINAR
 
-	function eliminar(){		
+	static function eliminar(){		
 		$id 		= 	$_REQUEST['id'];    	
         $condicion  =   "id=".$id;
     	$producto 	=	new Modelo();        
