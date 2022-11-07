@@ -13,7 +13,7 @@ class Producto extends Modelo{
     }
     public function mostrarPro($condicion){
         //select 
-        $consul="select pr.idProducto as 'idProducto', p.txtRazonSocial, pr.txtNombre, pr.txtPrecio FROM proveedor p JOIN producto pr ON p.nitproveedor=pr.nitProveedor where ".$condicion.";";
+        $consul="select pr.idProducto as 'idProducto', p.txtRazonSocial as 'txtRazonSocial', pr.txtNombre as 'txtNombre', pr.txtPrecio as 'txtPrecio' FROM proveedor p JOIN producto pr ON p.nitproveedor=pr.nitProveedor where ".$condicion.";";
         $resu=$this->db->query($consul);        
         while($filas = $resu->FETCHALL(PDO::FETCH_ASSOC)) {
                 $this->datos[]=$filas;

@@ -26,16 +26,6 @@ class Modelo{
         }
     }
 
-    public function insertarId($tabla,$data,$id){
-        $verificar=$this->mostrar($tabla,"id=".$id);
-        if(empty($verificar)){
-            $this->insertar($tabla,$data,$id);
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
      public function mostrar($tabla,$condicion){
         $consul="select * from ".$tabla." where ".$condicion.";";
         $resu=$this->db->query($consul);        
@@ -54,7 +44,7 @@ class Modelo{
         }
     }
     public function eliminar($tabla, $condicion){
-        $eli="delete from ".$tabla." where ".$condicion;
+        $eli="delete from ".$tabla." where ".$condicion.";";
         $res=$this->db->query($eli);
         if ($res) {
             return true; 

@@ -1,6 +1,11 @@
 <?php
 $pg = "sucursal";
 require_once("vista/layout/header.php");
+foreach($dato as $sucursal):
+    foreach($sucursal as $po=>$v):
+        $asucu=$v;
+    endforeach;
+endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +22,7 @@ require_once("vista/layout/header.php");
     <main class="container">
         <div class="row">
             <div class="col-12 py-5 text-center">
-                <h1>Registro de sucursales</h1>
+                <h1>Edición de sucursales</h1>
             </div>
         </div>
         <div class="row">
@@ -25,19 +30,20 @@ require_once("vista/layout/header.php");
                 <form action="" method="GET" enctype="multipart/form-data">
                     <div>
                         <label for="">Nombre: *</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="form-control mb-2" required value="">
+                        <input type="text" name="txtNombre" id="txtNombre" class="form-control mb-2" required value="<?php echo (!empty($asucu))? $asucu["txtNombre"]: ""; ?>">
                     </div>
                     <div>
                         <label for="">Direccion: *</label>
-                        <input type="text" name="txtDireccion" id="txtDireccion" class="form-control mb-2" required value="">
+                        <input type="text" name="txtDireccion" id="txtDireccion" class="form-control mb-2" required value="<?php echo (!empty($asucu))? $asucu["txtDireccion"]: ""; ?>">
                     </div>
                     <div>
                         <label for="">Telefono: *</label>
-                        <input type="number" name="txtTelefono" id="txtTelefono" class="form-control mb-2" required value="">
+                        <input type="number" name="txtTelefono" id="txtTelefono" class="form-control mb-2" required value="<?php echo (!empty($asucu))? $asucu["txtTelefono"]: ""; ?>">
                     </div>
                         <div>
-                            <button type="submit" class="btn btn-primary" name="btnGuardar" value="GUARDAR">Guardar</button>
-                            <input type="hidden" name="m" value="guardarSucu">
+                            <button type="submit" class="btn btn-primary" name="btnGuardar" value="EDITAR">Guardar</button>
+                            <input type="hidden" name="m" value="actualizarSucu">
+                            <input type="hidden" value="<?php echo $asucu['idsucursal'] ?>" name="idsucursal"> <br>
                         </div>
                 </form>
             </div>

@@ -9,8 +9,8 @@ class productoController{
     }
     // mostrar
     static function indexProd(){
-        $producto   = new Modelo();
-        $dato       =   $producto->mostrar("proveedor","1");
+        $producto   = new Producto();
+        $dato       =   $producto->mostrarPro("1");
         require_once("vista/producto/index.php");
     }
     //nuevo
@@ -25,7 +25,7 @@ class productoController{
         $nombre= trim($_REQUEST['txtNombre']);
         $pro= new Producto();
         $id=trim($_REQUEST['idProducto']);
-        $nit=$pro->mostrarRazon($razonsocial);
+        $nit=$pro->buscarNit($razonsocial);
         $precio=trim($_REQUEST['txtPrecio']);
         $correo= trim($_REQUEST['txtCorreo']); 
         $data = "'".$id."','".$nombre."','".$precio."',".$nit."'";
@@ -37,29 +37,31 @@ class productoController{
 
     //editar
     static function editarProd(){    
-        $id = trim($_REQUEST['id']);
+        $id = trim($_REQUEST['idProducto']);
         $producto = new Modelo();
-        $dato = $producto->mostrar("producto","id=".$id);        
+        $dato = $producto->mostrar("producto","idProducto=".$id);        
         require_once("vista/editar.php");
     }
     //actualizar
     static function actualizarProd(){
-        $id = $_REQUEST['id'];
+        $id = $_REQUEST['idProducto'];
         $nombre= trim($_REQUEST['txtNombre']);
-        $direccion= trim($_REQUEST['txtDireccion']);
-        $telefono=trim($_REQUEST['txtTelefono']);
-        $data = "'".$nombre."','".$direccion."','".$telefono."'";
-        $proveedor = new Modelo();
-        $dato = $proveedor->actualizar("proveedor",$data,"id=".$id);
+        $direccion= trim($_REQUEST['txtPrecio']);
+        $razonsocial=$_REQUEST["txtRazonSocial"];
+        $prod=new Producto();
+        $nit=$prod->buscarNit($razonsocial);
+        $data = "txtNombre='".$nombre."',txtPrecio=".$direccion.",nitProveedor=".$nit."'";
+        $producto = new Modelo();
+        $dato = $producto->actualizar("producto",$data,"idProducto=".$id);
         header("location:".urlsite);
     }
 
 
     //eliminar
     static function eliminarProd(){    
-        $id = $_REQUEST['id'];
-        $proveedor = new Modelo();
-        $dato = $proveedor->eliminar("proveedor","id=".$id);
+        $id = $_REQUEST['idProducto'];
+        $producto = new Modelo();
+        $dato = $producto->eliminar("producto","idProducto=".$id);
         header("location:".urlsite);
     }
 

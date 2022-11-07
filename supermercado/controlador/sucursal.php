@@ -30,7 +30,7 @@ class sucursalController{
     static function editarSucu(){    
         $id = $_REQUEST['idsucursal'];
         $sucursal = new Modelo();
-        $dato = $sucursal->mostrar("sucursal","id=".$id);        
+        $dato = $sucursal->mostrar("sucursal","idsucursal=".$id);        
         require_once("vista/sucursal/editar.php");
     }
     //actualizar
@@ -39,9 +39,9 @@ class sucursalController{
         $nombre= trim($_REQUEST['txtNombre']);
         $direccion= trim($_REQUEST['txtDireccion']);
         $telefono=trim($_REQUEST['txtTelefono']);
-        $data = "'".$nombre."','".$direccion."','".$telefono."'";
+        $data = "txtNombre='".$nombre."',txtDireccion='".$direccion."',txtTelefono=".$telefono;
         $sucursal = new Modelo();
-        $dato = $sucursal->actualizar("sucursal",$data,"id=".$id);
+        $dato = $sucursal->actualizar("sucursal",$data,"idsucursal=".$id);
         header("location:".urlsucu);
     }
 
@@ -50,7 +50,7 @@ class sucursalController{
     static function eliminarSucu(){    
         $id = $_REQUEST['idsucursal'];
         $sucursal = new Modelo();
-        $dato = $sucursal->eliminar("sucursal","id=".$id);
+        $dato = $sucursal->eliminar("sucursal","idsucursal=".$id);
         header("location:".urlsucu);
     }
 

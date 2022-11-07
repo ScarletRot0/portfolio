@@ -62,11 +62,12 @@
 <body>
 
 <div class="header">
-  <a href="#default" class="logo">SistemaMVC</a>
+  <a href="http://localhost/php/supermercado/" class="logo">Supermercado Uno</a>
   <div class="header-right">
-    <a class="<?php echo ($pg == "inicio")? "active": ""; ?>" href="">Inicio</a>
-    <a class="<?php echo ($pg == "producto")? "active": ""; ?>"href="vista/producto/index.php">Productos</a>
+    <a class="<?php echo ($pg == "inicio")? "active": ""; ?>" href="index.php?m=index">Inicio</a>
+    <a class="<?php echo ($pg == "producto")? "active": ""; ?>"href="index.php?m=indexProd">Productos</a>
     <a class="<?php echo ($pg == "sucursal")? "active": ""; ?>"href="index.php?m=indexSucu">Sucursal</a>
+    <a class="<?php echo ($pg == "proveedor")? "active": ""; ?>"href="index.php?m=indexProo">Proveedor</a>
   </div>
 </div>
 </body>

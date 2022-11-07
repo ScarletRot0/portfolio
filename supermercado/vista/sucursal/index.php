@@ -27,9 +27,9 @@ require_once("vista/layout/header.php");
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Imagen</th>
                         <th>Nombre</th>
-                        <th>Precio</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
@@ -43,8 +43,8 @@ require_once("vista/layout/header.php");
                                 <td><?php echo $v["txtDireccion"]; ?></td>
                                 <td><?php echo $v["txtTelefono"]; ?></td>
                                 <td>
-                                    <a value="habilitar" name="btnEditar" href="/php/supermercado/index.php?m=editarSucu&id=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="/php/supermercado/index.php?m=eliminarSucu&id=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a value="habilitar" name="btnEditar" href="/php/supermercado/index.php?m=editarSucu&idsucursal=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="/php/supermercado/index.php?m=eliminarSucu&idsucursal=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
