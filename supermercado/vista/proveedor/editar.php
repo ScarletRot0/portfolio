@@ -1,12 +1,7 @@
 <?php
 $pg = "proveedor";
 require_once("vista/layout/header.php");
-require_once("vista/layout/header.php");
-foreach($dato as $proveedor):
-    foreach($proveedor as $po=>$v):
-        $aprov=$v;
-    endforeach;
-endforeach;
+v
 ?>
 <!DOCTYPE html>
 <html lang="es">

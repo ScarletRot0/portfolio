@@ -22,7 +22,7 @@ require_once("vista/layout/header.php");
         </div>
         <div class="row">
             <div class="col-10">
-                <a type="submit" value="habilitar" name="btnCrear" id="btnCrear" class="btn btn-danger my-2" href="/php/mvc/index.php?m=nuevo">NUEVO</a>
+                <a type="submit" value="habilitar" name="btnCrear" id="btnCrear" class="btn btn-danger my-2" href="/php/supermercado/index.php?m=nuevoProd">NUEVO</a>
                 <table class="table table-hover border">
                     <thead>
                     <tr>
@@ -44,7 +44,7 @@ require_once("vista/layout/header.php");
                                 <td><?php echo $v["txtPrecio"]; ?></td>
                                 <td>
                                     <a value="habilitar" name="btnEditar" href="/php/mvc/index.php?m=editarSucu&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="/php/mvc/index.php?m=eliminarProd&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="/php/supermercado/index.php?m=eliminarProd&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

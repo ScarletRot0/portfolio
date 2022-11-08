@@ -30,8 +30,11 @@ class Producto extends Modelo{
         return $this->datos;
     }
     public function buscarNit($id){
-        $consult="select nitproveedor from proveedor where txtRazonSocial=".$id.";";
+        $consult="select nitproveedor from proveedor where txtRazonSocial='".$id."';";
         $resu=$this->db->query($consult);
-        return $resu;
+        return $resu->FETCHALL(PDO::FETCH_ASSOC);
+    }
+    public function buscarRazonEdit($id){
+        $consult="select p.txtRazonSocial as 'txtRazonSocial' from proveedor p JOIN producto pr ON p.nitproveedor=pr.nitProveedor where pr.idProducto=".$id.";";
     }  
 }

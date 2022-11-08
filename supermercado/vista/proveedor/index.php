@@ -58,7 +58,7 @@ require_once("vista/layout/header.php");
             <div class="row">
                 <div class="col-6 mt-5">
                     <div class="alert alert-info" role="alert">
-                        Aún no se han cargado sucursales.
+                        Aún no se han cargado proveedores.
                     </div>
                 </div>
             </div>
