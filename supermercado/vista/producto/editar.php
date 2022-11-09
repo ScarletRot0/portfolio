@@ -33,7 +33,11 @@ endforeach;
                         <select name="txtRazonSocial" id="txtRazonSocial" class="form-control">
                         <?php foreach($nombre as $proveedores): ?>
                             <?php foreach($proveedores as $po=>$v): ?>
-                                <option <?php $v["txtRazonSocial"] == $editar["txtRazonSocial"] ? "selected" : ""; ?> value="<?php echo $v["txtRazonSocial"];?>"><?php echo $v["txtRazonSocial"];?></option>
+                                <?php if($v["txtRazonSocial"]!=$editar["txtRazonSocial"]):?>
+                                    <option value="<?php echo $v["txtRazonSocial"];?>"><?php echo $v["txtRazonSocial"];?></option>
+                                <?php else:?>
+                                    <option selected value="<?php echo $v["txtRazonSocial"];?>"><?php echo $v["txtRazonSocial"];?></option>
+                                <?php endif;?>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                         </select>
