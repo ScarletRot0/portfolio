@@ -45,6 +45,7 @@ require_once("vista/layout/header.php");
                                 <td>
                                     <a value="habilitar" name="btnEditar" href="/php/supermercado/index.php?m=editarSucu&idsucursal=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <a href="/php/supermercado/index.php?m=eliminarSucu&idsucursal=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="/php/supermercado/index.php?m=indexSucuPro&idSucursal=<?php echo $v["idsucursal"];?>"><i class="fa-solid fa-book"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

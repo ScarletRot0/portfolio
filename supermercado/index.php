@@ -4,6 +4,7 @@ require_once("controlador/index.php");
 require_once("controlador/producto.php");
 require_once("controlador/sucursal.php");
 require_once("controlador/proveedor.php");
+require_once("controlador/sucursal_producto.php");
 if (isset($_GET['m'])){
     if(method_exists("modeloController",$_GET['m'])){
         modeloController::{$_GET['m']}();
@@ -16,6 +17,12 @@ if (isset($_GET['m'])){
     }
     else if(method_exists("proveedorController",$_GET['m'])){
         proveedorController::{$_GET['m']}();
+    }
+    else if(method_exists("sucursalProductoController",$_GET['m'])){
+        sucursalProductoController::{$_GET['m']}();
+    }
+    else{
+        modeloController::index();
     }
 }
 else{
