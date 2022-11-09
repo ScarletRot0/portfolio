@@ -40,9 +40,11 @@ class productoController{
     //editar
     static function editarProd(){    
         $id = trim($_REQUEST['idProducto']);
-        $producto = new Modelo();
-        $dato = $producto->mostrar("producto","idProducto=".$id);        
-        require_once("vista/editar.php");
+        $producto = new Producto();
+        $data = $producto->mostrarPro("pr.idProducto=".$id);
+        $nombre=$producto->mostrarRazon();
+        $nombre=array_slice($nombre,1);
+        require_once("vista/producto/editar.php");
     }
     //actualizar
     static function actualizarProd(){
@@ -52,7 +54,10 @@ class productoController{
         $razonsocial=$_REQUEST["txtRazonSocial"];
         $prod=new Producto();
         $nit=$prod->buscarNit($razonsocial);
-        $data = "txtNombre='".$nombre."',txtPrecio=".$direccion.",nitProveedor=".$nit."'";
+        foreach($nit as $po=>$v):
+            $nitt=$v["nitproveedor"];
+        endforeach;
+        $data = "txtNombre='".$nombre."',txtPrecio=".$direccion.",nitProveedor=".$nitt;
         $producto = new Modelo();
         $dato = $producto->actualizar("producto",$data,"idProducto=".$id);
         header("location:".urlprod);

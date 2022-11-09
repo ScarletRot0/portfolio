@@ -43,7 +43,7 @@ require_once("vista/layout/header.php");
                                 <td><?php echo $v["txtNombre"]; ?></td>
                                 <td><?php echo $v["txtPrecio"]; ?></td>
                                 <td>
-                                    <a value="habilitar" name="btnEditar" href="/php/mvc/index.php?m=editarSucu&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a value="habilitar" name="btnEditar" href="/php/supermercado/index.php?m=editarProd&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <a href="/php/supermercado/index.php?m=eliminarProd&idProducto=<?php echo $v["idProducto"];?>"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                             </tr>

@@ -1,6 +1,11 @@
 <?php
 $pg = "producto";
 require_once("vista/layout/header.php");
+foreach($data as $datos):
+    foreach($datos as $po=>$v):
+        $editar=$v;
+    endforeach;
+endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,37 +22,34 @@ require_once("vista/layout/header.php");
     <main class="container">
         <div class="row">
             <div class="col-12 py-5 text-center">
-                <h1>Registro de productos</h1>
+                <h1>Edición de productos</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-10">
                 <form action="" method="GET" enctype="multipart/form-data">
-                    <div>
-                        <label for="">Id: *</label>
-                        <input type="number" name="idProducto" id="idProducto" class="form-control mb-2" required value="">
-                    </div>
-                    <div class="col-4 mb-2">
+                    <div class="col-6 mb-2">
                         <label for="">Razon social proveedor: *</label>
                         <select name="txtRazonSocial" id="txtRazonSocial" class="form-control">
-                        <?php foreach($dato as $proveedores): ?>
+                        <?php foreach($nombre as $proveedores): ?>
                             <?php foreach($proveedores as $po=>$v): ?>
-                                <option value="<?php echo $v["txtRazonSocial"];?>"><?php echo $v["txtRazonSocial"];?></option>
+                                <option <?php $v["txtRazonSocial"] == $editar["txtRazonSocial"] ? "selected" : ""; ?> value="<?php echo $v["txtRazonSocial"];?>"><?php echo $v["txtRazonSocial"];?></option>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
                         <label for="">Nombre: *</label>
-                        <input type="text" name="txtNombre" id="txtNombre" class="form-control mb-2" required value="">
+                        <input type="text" name="txtNombre" id="txtNombre" class="form-control mb-2" required value="<?php echo (!empty($editar))? $editar["txtNombre"]: ""; ?>">
                     </div>
                     <div>
                         <label for="">Precio: *</label>
-                        <input type="number" name="txtPrecio" id="txtPrecio" class="form-control mb-2" required value="">
+                        <input type="number" name="txtPrecio" id="txtPrecio" class="form-control mb-2" required value="<?php echo (!empty($editar))? $editar["txtPrecio"]: ""; ?>">
                     </div>
                         <div>
-                            <button type="submit" class="btn btn-primary" name="btnGuardar" value="GUARDAR">Guardar</button>
-                            <input type="hidden" name="m" value="guardarProd">
+                            <button type="submit" class="btn btn-primary" name="btnEditar" value="EDITAR">Guardar</button>
+                            <input type="hidden" name="m" value="actualizarProd">
+                            <input type="hidden" value="<?php echo $editar['idProducto'] ?>" name="idProducto"> <br>
                         </div>
                 </form>
             </div>
