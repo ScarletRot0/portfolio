@@ -22,7 +22,7 @@ if (isset($_GET['m'])){
         sucursalProductoController::{$_GET['m']}();
     }
     else{
-        modeloController::index();
+        modeloController::error();
     }
 }
 else{

@@ -20,4 +20,17 @@ class SucursalProducto extends Modelo{
         }
         return $this->datos;
     }
+    public function mostrarProductos($condicion){
+        $consul="SELECT txtNombre from producto where idProducto NOT LIKE (select pr.idProducto FROM producto pr JOIN sucursal_producto sp ON sp.idProducto=pr.idProducto where sp.idSucursal=".$condicion.")";
+        $resu=$this->db->query($consul);        
+        while($filas = $resu->FETCHALL(PDO::FETCH_ASSOC)) {
+                $this->datos[]=$filas;
+        }
+        return $this->datos;
+    }
+    public function buscarProducto($id){
+        $consul="SELECT idProducto from producto where txtNombre='".$id."';";
+        $resu=$this->db->query($consul);   
+        return $resu->FETCHALL(PDO::FETCH_ASSOC);
+    }
 }

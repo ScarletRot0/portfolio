@@ -17,13 +17,19 @@ class sucursalController{
     }
     //guardar
     static function guardarSucu(){
-        $nombre= trim($_REQUEST['txtNombre']);
-        $direccion= trim($_REQUEST['txtDireccion']);
-        $telefono=trim($_REQUEST['txtTelefono']);
-        $data = "'".$nombre."','".$direccion."','".$telefono."'";
-        $producto = new Modelo();
-        $dato = $producto->insertar("sucursal",$data,"");
-        header("location:".urlsucu);
+        try{
+            $nombre= trim($_REQUEST['txtNombre']);
+            $direccion= trim($_REQUEST['txtDireccion']);
+            $telefono=trim($_REQUEST['txtTelefono']);
+            $data = "'".$nombre."','".$direccion."','".$telefono."'";
+            $producto = new Modelo();
+            $dato = $producto->insertar("sucursal",$data,"");
+            header("location:".urlsucu);
+        }
+        catch(Exception $e){
+            header("location:".urlerror);
+        }
+        
     }
 
     //editar
@@ -35,14 +41,19 @@ class sucursalController{
     }
     //actualizar
     static function actualizarSucu(){
-        $id = $_REQUEST['idsucursal'];
-        $nombre= trim($_REQUEST['txtNombre']);
-        $direccion= trim($_REQUEST['txtDireccion']);
-        $telefono=trim($_REQUEST['txtTelefono']);
-        $data = "txtNombre='".$nombre."',txtDireccion='".$direccion."',txtTelefono=".$telefono;
-        $sucursal = new Modelo();
-        $dato = $sucursal->actualizar("sucursal",$data,"idsucursal=".$id);
-        header("location:".urlsucu);
+        try{
+            $id = $_REQUEST['idsucursal'];
+            $nombre= trim($_REQUEST['txtNombre']);
+            $direccion= trim($_REQUEST['txtDireccion']);
+            $telefono=trim($_REQUEST['txtTelefono']);
+            $data = "txtNombre='".$nombre."',txtDireccion='".$direccion."',txtTelefono=".$telefono;
+            $sucursal = new Modelo();
+            $dato = $sucursal->actualizar("sucursal",$data,"idsucursal=".$id);
+            header("location:".urlsucu);
+        }
+        catch(Exception $e){
+            header("location:".urlerror);
+        }
     }
 
 

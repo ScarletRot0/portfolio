@@ -1,5 +1,4 @@
 <?php
-$pg="inicio";
 require_once("vista/layout/header.php");
 ?>
 <!DOCTYPE html>
@@ -18,11 +17,16 @@ require_once("vista/layout/header.php");
     <main role="main" class="container">
       <div class="row">
           <div class="col-12 py-5 text-center">
-            <h1>Index</h1>
+            <h1>ERROR</h1>
+          </div>
+          <div class="col-12 py-5 text-center">
+            <h2>Esto pudo deberse al tratar de acceder a una página que no existe, al introducir datos erróneos o al tratar de añadir un registro ya existente, el mensaje de error fue:</h2>
+          </div>
+          <div class="col-12 py-5 text-center">
+            <h3><?php echo($e);?></h3>
           </div>
       </div>
-      <p class="lead text-center">Seleccione uno de los elementos en el header para empezar</p>
-      <img src="vista/css/imagenes/supermercado.jpg" alt="Heladera Whirlpool">
+      
       <!--<p>Use <a href="../sticky-footer-navbar/">the sticky footer with a fixed navbar</a> if need be, too.</p>!-->
     </main>
   </body>

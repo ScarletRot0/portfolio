@@ -17,17 +17,20 @@ class proveedorController{
     }
     //guardar
     static function guardarProo(){
-        $id=trim($_REQUEST['nitproveedor']);
-        $razonsocial= trim($_REQUEST['txtRazonSocial']);
-        $telefono=trim($_REQUEST['txtTelefono']);
-        $correo= trim($_REQUEST['txtCorreo']); 
-        $data = "'".$razonsocial."','".$telefono."','".$correo."'";
-        $proveedor = new Modelo();
-        $dato = $proveedor->insertar("proveedor",$data,$id);
-        header("location:".urlproo);
+        try{
+            $id=trim($_REQUEST['nitproveedor']);
+            $razonsocial= trim($_REQUEST['txtRazonSocial']);
+            $telefono=trim($_REQUEST['txtTelefono']);
+            $correo= trim($_REQUEST['txtCorreo']); 
+            $data = "'".$razonsocial."','".$telefono."','".$correo."'";
+            $proveedor = new Modelo();
+            $dato = $proveedor->insertar("proveedor",$data,$id);
+            header("location:".urlproo);
+        }
+        catch(Exception $e){
+            header("location".urlerror);
+        }
     }
-
-
 
     //editar
     static function editarProo(){    
@@ -38,14 +41,19 @@ class proveedorController{
     }
     //actualizar
     static function actualizarProo(){
-        $id = $_REQUEST['nitproveedor'];
-        $nombre= trim($_REQUEST['txtRazonSocial']);
-        $telefono= trim($_REQUEST['txtTelefono']);
-        $correo=trim($_REQUEST['txtCorreo']);
-        $data = "txtRazonSocial='".$nombre."',txtTelefono=".$telefono.",txtCorreo='".$correo."'";
-        $proveedor = new Modelo();
-        $dato = $proveedor->actualizar("proveedor",$data,"nitproveedor=".$id);
-        header("location:".urlproo);
+        try{
+            $id = $_REQUEST['nitproveedor'];
+            $nombre= trim($_REQUEST['txtRazonSocial']);
+            $telefono= trim($_REQUEST['txtTelefono']);
+            $correo=trim($_REQUEST['txtCorreo']);
+            $data = "txtRazonSocial='".$nombre."',txtTelefono=".$telefono.",txtCorreo='".$correo."'";
+            $proveedor = new Modelo();
+            $dato = $proveedor->actualizar("proveedor",$data,"nitproveedor=".$id);
+            header("location:".urlproo);
+        }
+        catch(Exception $e){
+            header("location".urlerror);
+        }
     }
 
 
