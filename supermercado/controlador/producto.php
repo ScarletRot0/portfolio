@@ -32,8 +32,7 @@ class productoController{
                 $nitt=$v["nitproveedor"];
             endforeach;
             $data = "'".$nombre."','".$precio."','".$nitt."'";
-            $producto = new Modelo();
-            $dato = $producto->insertar("producto",$data,$id);
+            $dato = $pro->insertar("producto",$data,$id);
             header("location:".urlprod);
         }
         catch(Exception $e){
@@ -65,8 +64,7 @@ class productoController{
                 $nitt=$v["nitproveedor"];
             endforeach;
             $data = "txtNombre='".$nombre."',txtPrecio=".$direccion.",nitProveedor=".$nitt;
-            $producto = new Modelo();
-            $dato = $producto->actualizar("producto",$data,"idProducto=".$id);
+            $dato = $prod->actualizar("producto",$data,"idProducto=".$id);
             header("location:".urlprod);
         }
         catch(Exception $e){

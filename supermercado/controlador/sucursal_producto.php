@@ -1,6 +1,4 @@
 <?php
-require_once("modelo/modelo.php");
-require_once("modelo/producto.php");
 require_once("modelo/sucursal_producto.php");
 class sucursalProductoController{
     private $model;
@@ -18,8 +16,13 @@ class sucursalProductoController{
     static function nuevoSucuPro(){
         $id = $_REQUEST['idSucursal'];     
         $sucupro   = new SucursalProducto();
-        $dato =$sucupro->mostrarProductos($id);   
-        require_once("vista/sucursal_producto/nuevo.php");
+        $dato =$sucupro->mostrarProductos($id);
+        if (empty($dato)){
+            require_once("vista/sucursal_producto/full.php");
+        }
+        else{
+            require_once("vista/sucursal_producto/nuevo.php");
+        }   
     }
     //guardar
     static function guardarSucuPro(){
@@ -40,20 +43,21 @@ class sucursalProductoController{
     static function editarSucuPro(){   
         $id2=$_REQUEST['idSucursal']; 
         $id = $_REQUEST['idsucursal_producto'];
-        $sucursal = new Modelo();
+        $sucursal = new SucursalProducto();
         $dato = $sucursal->mostrar("sucursal_producto","idsucursal_producto=".$id);        
         require_once("vista/sucursal_producto/editar.php");
     }
     //actualizar
     static function actualizarSucuPro(){
-        $id = $_REQUEST['idsucursal'];
-        $nombre= trim($_REQUEST['txtNombre']);
+        $id2=$_REQUEST['idSucursal']; 
+        $id = $_REQUEST['idsucursal_producto'];
+        $stock= trim($_REQUEST['txtStock']);
         $direccion= trim($_REQUEST['txtDireccion']);
         $telefono=trim($_REQUEST['txtTelefono']);
-        $data = "txtNombre='".$nombre."',txtDireccion='".$direccion."',txtTelefono=".$telefono;
-        $sucursal = new Modelo();
-        $dato = $sucursal->actualizar("sucursal",$data,"idsucursal=".$id);
-        header("location:".urlsucu);
+        $data = "txtStock=".$stock."";
+        $sucursal = new SucursalProducto();
+        $dato = $sucursal->actualizar("sucursal_producto",$data,"idsucursal_producto=".$id);
+        header("location:".urlsucuprod.$id2);
     }
 
 
@@ -61,7 +65,7 @@ class sucursalProductoController{
     static function eliminarSucuPro(){    
         $id2=$_REQUEST['idSucursal']; 
         $id = $_REQUEST['idsucursal_producto'];
-        $sucursal = new Modelo();
+        $sucursal = new SucursalProducto();
         $dato = $sucursal->eliminar("sucursal_producto","idsucursal_producto=".$id);
         header("location:".urlsucuprod.$id2);
     }

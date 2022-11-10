@@ -1,7 +1,4 @@
 <?php
-
-use function PHPUnit\Framework\isEmpty;
-
 class SucursalProducto extends Modelo{
     private $Modelo;
     protected $db;    
@@ -21,7 +18,7 @@ class SucursalProducto extends Modelo{
         return $this->datos;
     }
     public function mostrarProductos($condicion){
-        $consul="SELECT txtNombre from producto where idProducto NOT LIKE (select pr.idProducto FROM producto pr JOIN sucursal_producto sp ON sp.idProducto=pr.idProducto where sp.idSucursal=".$condicion.")";
+        $consul="SELECT txtNombre from producto where idProducto NOT IN (select pr.idProducto FROM producto pr JOIN sucursal_producto sp ON sp.idProducto=pr.idProducto where sp.idSucursal=".$condicion.")";
         $resu=$this->db->query($consul);        
         while($filas = $resu->FETCHALL(PDO::FETCH_ASSOC)) {
                 $this->datos[]=$filas;

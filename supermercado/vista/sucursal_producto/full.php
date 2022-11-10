@@ -1,11 +1,6 @@
 <?php
 $pg = "sucursal";
 require_once("vista/layout/header.php");
-foreach($dato as $stock):
-    foreach($stock as $po=>$v):
-        $aStock=$v;
-    endforeach;
-endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,19 +22,12 @@ endforeach;
             </div>
         </div>
         <div class="row">
-            <div class="col-10">
-                <form action="" method="GET" enctype="multipart/form-data">
-                    <div class="col-4 mb-2">
-                        <label for="">Stock: *</label>
-                        <input type="number" name="txtStock" id="txtStock" class="form-control mb-2" required value="<?php echo (!empty($aStock))? $aStock["txtStock"]: ""; ?>">
-                        <input type="hidden" value="<?php echo $id2?>" name="idSucursal"> <br>
-                        <input type="hidden" value="<?php echo $id?>" name="idsucursal_producto"> <br>
+            <div class="row">
+                <div class="col-10 mt-5">
+                    <div class="alert alert-info" role="alert">
+                        Ya se han cargado todos los productos para esta sucursal, pruebe editando los existentes
                     </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary" name="btnGuardar" value="EDITAR">Guardar</button>
-                            <input type="hidden" name="m" value="actualizarSucuPro">
-                        </div>
-                </form>
+                </div>
             </div>
         </div>
     </main>
